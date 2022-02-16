@@ -11,6 +11,7 @@ public class SimplePlayerController : MonoBehaviour
     void Update()
     {
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized;
+        direction = gameObject.transform.TransformDirection(direction);
         if (direction.magnitude >= 0.1f) {
             controller.Move(direction * move_speed * Time.deltaTime);
         }

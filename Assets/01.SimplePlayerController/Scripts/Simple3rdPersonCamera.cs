@@ -20,24 +20,25 @@ public class Simple3rdPersonCamera : MonoBehaviour
 
     void Update()
     {
-        Vector3 angles = gameObject.transform.eulerAngles;
-        float mouseX = Input.GetAxis("Mouse X") * -rotate_speed * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * rotate_speed * Time.deltaTime;
-        angles += new Vector3(mouseY, mouseX, 0f);
-        if (angles.y < 0f) {
-            angles.y += 360f;
-        }
-        else if (angles.y > 360f) {
-            angles.y -= 360f;
-        }
-        if (angles.x < minPitch) {
-            angles.x = minPitch;
-        }
-        else if (angles.x > maxPitch) {
-            angles.x = maxPitch;
-        }
-        gameObject.transform.eulerAngles = angles;
+        //Pitch, only rotates camera
+        Vector3 camAngles = gameObject.transform.eulerAngles;
+        float mouseY = Input.GetAxis("Mouse Y") * -rotate_speed * Time.deltaTime;
+        camAngles.x = Mathf.Clamp(camAngles.x+mouseY, minPitch, maxPitch);
+        gameObject.transform.eulerAngles = camAngles;
 
+        //Yaw, rotates player model
+        Vector3 bodyAngles = gameObject.transform.parent.eulerAngles;
+        float mouseX = Input.GetAxis("Mouse X") * rotate_speed * Time.deltaTime;
+        bodyAngles += new Vector3(0f, mouseX, 0f);
+        if (bodyAngles.y < 0f) {
+            bodyAngles.y += 360f;
+        }
+        else if (bodyAngles.y > 360f) {
+            bodyAngles.y -= 360f;
+        }
+        gameObject.transform.parent.eulerAngles = bodyAngles;
+
+        //Camera zoom
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         float camera_z = camera.localPosition.z;
         camera_z += scroll * zoomSpeed;
