@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SimplePlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    public CharacterController controller;
+    public float move_speed = 1f;
+
     void Update()
     {
-        
+        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized;
+        if (direction.magnitude >= 0.1f) {
+            controller.Move(direction * move_speed * Time.deltaTime);
+        }
     }
 }
