@@ -7,13 +7,30 @@ public class SimplePlayerController : MonoBehaviour
 
     public CharacterController controller;
     public float move_speed = 1f;
+    public float jumpForce = 10f;
+    public float gravity = -9.8f;
+
+    private float yVelocity = 0f;
 
     void Update()
     {
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized;
+        //Horizontal movement
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
         direction = gameObject.transform.TransformDirection(direction);
-        if (direction.magnitude >= 0.1f) {
-            controller.Move(direction * move_speed * Time.deltaTime);
+        Vector3 movement = direction * move_speed * Time.deltaTime;
+
+        //Gravity & vertical movement
+        if (controller.isGrounded) {
+            yVelocity = 0f;
+            if (Input.GetAxisRaw("Jump") > 0f) {
+                yVelocity = jumpForce;
+            }
+        }
+        yVelocity += gravity * Time.deltaTime;
+        movement.y = yVelocity * Time.deltaTime;
+
+        if (direction.magnitude >= 0.0f) {
+            controller.Move(movement);
         }
     }
 }

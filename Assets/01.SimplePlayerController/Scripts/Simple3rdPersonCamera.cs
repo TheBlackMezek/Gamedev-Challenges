@@ -13,9 +13,9 @@ public class Simple3rdPersonCamera : MonoBehaviour
     public float maxZoom = 8f;
     public Transform camera;
 
-    private void Start() {
-        Cursor.visible = false;
+    private void Awake() {
         Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     void Update()
