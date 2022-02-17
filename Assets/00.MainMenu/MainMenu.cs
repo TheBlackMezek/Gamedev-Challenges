@@ -9,4 +9,8 @@ public class MainMenu : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("01.SimplePlayerController");
     }
 
+    public void OpenScene02() {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("02.1stPersonController");
+    }
+
 }
