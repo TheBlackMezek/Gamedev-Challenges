@@ -5,14 +5,17 @@ using UnityEngine;
 public class StationGenerator : MonoBehaviour
 {
 
-    public int hallLength;
+    public int sizeX;
+    public int sizeZ;
 
     public StationPrefabs prefabs;
 
     private void Start() {
-        for (int i=0; i<hallLength; ++i) {
-            GameObject obj = prefabs.GetHall();
-            obj.transform.position = new Vector3(0f,0f,prefabs.voxelSize*i);
+        for (int x=0; x<sizeX; ++x) {
+            for (int z=0; z<sizeZ; ++z) {
+                GameObject obj = prefabs.GetOpen();
+                obj.transform.position = new Vector3(prefabs.voxelSize*x,0f,prefabs.voxelSize*z);
+            }
         }
     }
 

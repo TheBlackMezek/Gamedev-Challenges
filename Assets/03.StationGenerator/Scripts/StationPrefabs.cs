@@ -78,6 +78,17 @@ public class StationPrefabs : MonoBehaviour
         return root;
     }
 
+    public GameObject GetOpen() {
+        //A voxel with a floor and ceiling but no walls
+        GameObject root = new GameObject();
+        root.name = "Open space";
+
+        AddFloor(root);
+        AddCeiling(root);
+
+        return root;
+    }
+
     private void BuildMeshWall() {
         float radius = voxelSize/2f;
         Vector3[] vertices = new Vector3[] {
