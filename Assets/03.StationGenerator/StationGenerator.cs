@@ -22,6 +22,14 @@ public class StationGenerator : MonoBehaviour
                     obj = prefabs.GetCorner(0);
                 } else if (x==sizeX-1 && z==0) {
                     obj = prefabs.GetCorner(1);
+                } else if (x==0) {
+                    obj = prefabs.GetWall(3);
+                } else if (x==sizeX-1) {
+                    obj = prefabs.GetWall(1);
+                } else if (z==0) {
+                    obj = prefabs.GetWall(2);
+                } else if (z==sizeZ-1) {
+                    obj = prefabs.GetWall(0);
                 } else {
                     obj = prefabs.GetOpen();
                 }

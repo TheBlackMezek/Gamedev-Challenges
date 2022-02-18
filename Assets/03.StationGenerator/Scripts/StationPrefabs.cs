@@ -78,6 +78,18 @@ public class StationPrefabs : MonoBehaviour
         return root;
     }
 
+    public GameObject GetWall(int dir) {
+        //dir: 0=north, 1=east, 2=south, 3=west
+        GameObject root = new GameObject();
+        root.name = "Wall";
+
+        AddFloor(root);
+        AddWall(root, dir);
+        AddCeiling(root);
+
+        return root;
+    }
+
     public GameObject GetCorner(int dir) {
         //dir: 0=NE 1=SE 2=SW 3=NW
         GameObject root = new GameObject();
