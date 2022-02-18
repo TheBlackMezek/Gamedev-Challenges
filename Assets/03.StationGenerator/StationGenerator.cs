@@ -13,7 +13,18 @@ public class StationGenerator : MonoBehaviour
     private void Start() {
         for (int x=0; x<sizeX; ++x) {
             for (int z=0; z<sizeZ; ++z) {
-                GameObject obj = prefabs.GetOpen();
+                GameObject obj;
+                if (x==0 && z==0) {
+                    obj = prefabs.GetCorner(2);
+                } else if (x==0 && z==sizeZ-1) {
+                    obj = prefabs.GetCorner(3);
+                } else if (x==sizeX-1 && z==sizeZ-1) {
+                    obj = prefabs.GetCorner(0);
+                } else if (x==sizeX-1 && z==0) {
+                    obj = prefabs.GetCorner(1);
+                } else {
+                    obj = prefabs.GetOpen();
+                }
                 obj.transform.position = new Vector3(prefabs.voxelSize*x,0f,prefabs.voxelSize*z);
             }
         }

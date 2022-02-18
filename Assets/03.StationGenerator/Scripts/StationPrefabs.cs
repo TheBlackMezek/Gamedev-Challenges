@@ -78,6 +78,30 @@ public class StationPrefabs : MonoBehaviour
         return root;
     }
 
+    public GameObject GetCorner(int dir) {
+        //dir: 0=NE 1=SE 2=SW 3=NW
+        GameObject root = new GameObject();
+        root.name = "Corner";
+
+        AddFloor(root);
+        AddCeiling(root);
+        if (dir == 0) {
+            AddWall(root, 0);
+            AddWall(root, 1);
+        } else if (dir == 1) {
+            AddWall(root, 1);
+            AddWall(root, 2);
+        } else if (dir == 2) {
+            AddWall(root, 2);
+            AddWall(root, 3);
+        } else if (dir == 3) {
+            AddWall(root, 3);
+            AddWall(root, 0);
+        }
+
+        return root;
+    }
+
     public GameObject GetOpen() {
         //A voxel with a floor and ceiling but no walls
         GameObject root = new GameObject();
