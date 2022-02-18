@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 582225499}
   - component: {fileID: 582225500}
+  - component: {fileID: 582225501}
   - component: {fileID: 582225498}
   - component: {fileID: 582225497}
   m_Layer: 0
@@ -217,7 +218,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef5cf4ba3595e24291b3033ff8e14d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filter: {fileID: 582225498}
+  hallLength: 20
+  prefabs: {fileID: 582225501}
+--- !u!114 &582225501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582225496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d4c0b67e19157449d206b6223a2f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voxelSize: 3
+  material: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1263910678
 GameObject:
   m_ObjectHideFlags: 0

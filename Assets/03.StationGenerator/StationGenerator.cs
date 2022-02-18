@@ -5,24 +5,15 @@ using UnityEngine;
 public class StationGenerator : MonoBehaviour
 {
 
-    public MeshFilter filter;
+    public int hallLength;
+
+    public StationPrefabs prefabs;
 
     private void Start() {
-        Vector3[] vertices = new Vector3[] {
-            new Vector3(-1,0,-1),
-            new Vector3(-1,0,1),
-            new Vector3(1,0,1),
-            new Vector3(1,0,-1)
-        };
-        int[] triangles = new int[] {
-            0, 1, 3,
-            1, 2, 3
-        };
-        Mesh mesh = new Mesh();
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
-        mesh.RecalculateNormals();
-        filter.mesh = mesh;
+        for (int i=0; i<hallLength; ++i) {
+            GameObject obj = prefabs.GetHall();
+            obj.transform.position = new Vector3(0f,0f,prefabs.voxelSize*i);
+        }
     }
 
 }
