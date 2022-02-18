@@ -183,6 +183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   voxelSize: 3
+  doorHeight: 2
+  doorWidth: 1
   material: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1263910678
 GameObject:

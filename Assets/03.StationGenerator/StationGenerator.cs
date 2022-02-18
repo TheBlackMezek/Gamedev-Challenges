@@ -11,6 +11,7 @@ public class StationGenerator : MonoBehaviour
     public StationPrefabs prefabs;
 
     private void Start() {
+        bool doorAdded = false;
         for (int x=0; x<sizeX; ++x) {
             for (int z=0; z<sizeZ; ++z) {
                 GameObject obj;
@@ -23,7 +24,12 @@ public class StationGenerator : MonoBehaviour
                 } else if (x==sizeX-1 && z==0) {
                     obj = prefabs.GetCorner(1);
                 } else if (x==0) {
-                    obj = prefabs.GetWall(3);
+                    if (!doorAdded) {
+                        obj = prefabs.GetWallDoor(3);
+                        doorAdded = true;
+                    } else{
+                        obj = prefabs.GetWall(3);
+                    }
                 } else if (x==sizeX-1) {
                     obj = prefabs.GetWall(1);
                 } else if (z==0) {
