@@ -5,43 +5,46 @@ using UnityEngine;
 public class StationGenerator : MonoBehaviour
 {
 
-    public int sizeX;
-    public int sizeZ;
+    public int coreDiameter;
+    public int coreHeight;
 
     public StationPrefabs prefabs;
 
     private void Start() {
-        bool doorAdded = false;
-        for (int x=0; x<sizeX; ++x) {
-            for (int z=0; z<sizeZ; ++z) {
+        GameObject core = BuildRoom(new Vector2Int(-coreDiameter/2,-coreDiameter/2), new Vector2Int(coreDiameter,coreDiameter));
+        core.transform.parent = transform;
+    }
+
+    private GameObject BuildRoom(Vector2Int start, Vector2Int size) {
+        GameObject root = new GameObject();
+        root.name = "Room";
+        for (int x=0; x<size.x; ++x) {
+            for (int z=0; z<size.y; ++z) {
                 GameObject obj;
                 if (x==0 && z==0) {
                     obj = prefabs.GetCorner(2);
-                } else if (x==0 && z==sizeZ-1) {
+                } else if (x==0 && z==size.y-1) {
                     obj = prefabs.GetCorner(3);
-                } else if (x==sizeX-1 && z==sizeZ-1) {
+                } else if (x==size.x-1 && z==size.y-1) {
                     obj = prefabs.GetCorner(0);
-                } else if (x==sizeX-1 && z==0) {
+                } else if (x==size.x-1 && z==0) {
                     obj = prefabs.GetCorner(1);
                 } else if (x==0) {
-                    if (!doorAdded) {
-                        obj = prefabs.GetWallDoor(3);
-                        doorAdded = true;
-                    } else{
-                        obj = prefabs.GetWall(3);
-                    }
-                } else if (x==sizeX-1) {
+                    obj = prefabs.GetWall(3);
+                } else if (x==size.x-1) {
                     obj = prefabs.GetWall(1);
                 } else if (z==0) {
                     obj = prefabs.GetWall(2);
-                } else if (z==sizeZ-1) {
+                } else if (z==size.y-1) {
                     obj = prefabs.GetWall(0);
                 } else {
                     obj = prefabs.GetOpen();
                 }
-                obj.transform.position = new Vector3(prefabs.voxelSize*x,0f,prefabs.voxelSize*z);
+                obj.transform.position = new Vector3(prefabs.voxelSize*(x+start.x),0f,prefabs.voxelSize*(z+start.y));
+                obj.transform.parent = root.transform;
             }
         }
+        return root;
     }
 
 }

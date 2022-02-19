@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef5cf4ba3595e24291b3033ff8e14d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeX: 3
-  sizeZ: 8
+  coreDiameter: 8
+  coreHeight: 3
   prefabs: {fileID: 582225501}
 --- !u!114 &582225501
 MonoBehaviour:
